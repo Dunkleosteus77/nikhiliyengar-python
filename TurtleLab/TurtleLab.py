@@ -69,9 +69,18 @@ def circle():
 #circle()
 
 def main():
-    count=int(input("How many shapes do you want? "))
-    for x in range(count):
-        advanced()
+    pen.speed(0)
+    pentagon=int(input("If you want to make shapes, press 1. If you want to make patterns, press 2 "))
+    if pentagon==1:
+        count=int(input("How many shapes do you want? "))
+        for x in range(count):
+            advanced()
+    elif pentagon==2:
+        count=int(input("How many do you want? "))
+        for x in range(count):
+            rosettes()
+    else:
+        print("That wasn't an option. Get outta here")
 
 def advanced():
     color=input("Do you want green, blue, red, purple, or yellow? ")
@@ -99,7 +108,6 @@ def advanced():
     if y > 400 or y < -400:
         print("That value is too dumb, I set it to 0")
         y=0
-    print("Your shape's done")
     pen.up()
     pen.setpos(x,y)
     pen.down()
@@ -111,6 +119,50 @@ def advanced():
         for x in range(sides):
             pen.forward(length)
             pen.left(180-angle)
+    print("Your shape's done")
+
+def rosettes():
+    print("We're making rosettes")
+    x=int(input("What's your starting point's x-coordinate? "))
+    if x > 400 or x < -400:
+        print("That value is too dumb, I set it to 0")
+        x=0
+    y=int(input("What's the y coordinate? "))
+    if y > 400 or y < -400:
+        print("That value is too dumb, I set it to 0")
+        y=0
+    colorslist=[]
+    understand=input("You can choose 5 colors: green, blue, red, purple, or yellow. Do you understand? ")
+    if understand=="no":
+        print("Too bad")
+    else:
+        print("Cool, we're going")
+    for x in range(5):
+        colors=input("Color ")
+        if colors=="green" or colors=="blue" or colors=="red" or colors=="purple" or colors=="yellow":
+            colorslist.append(colors)
+        else:
+            print("You chose wrong. You're getting red")
+            colorslist.append("red")
+    radius=int(input("How big are your circles? "))
+    if radius>300:
+        print("That's too big, I set it to 200")
+        radius=200
+    if radius<50:
+        print("That's too small, I set it to 100")
+        radius=100
+    i=0
+    pen.up()
+    pen.setpos(x,y)
+    pen.down()
+    for circles in range(radius):
+        pen.color(colorslist[i])
+        pen.circle(radius)
+        pen.left(50)
+        i+=1
+        if i >= len(colorslist):
+            i=0
+    print("Okay, your rosette's done")
 main()
 
 turtle.update()
