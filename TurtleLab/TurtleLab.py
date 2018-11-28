@@ -73,10 +73,22 @@ def main():
     pentagon=int(input("If you want to make shapes, press 1. If you want to make patterns, press 2 "))
     if pentagon==1:
         count=int(input("How many shapes do you want? "))
+        if count > 4:
+            print("That's too many. You get 1")
+            count=1
+        if count < 1:
+            print("No, you get 1")
+            count=1
         for x in range(count):
             advanced()
     elif pentagon==2:
         count=int(input("How many do you want? "))
+        if count > 4:
+            print("That's too many. You get 1")
+            count=1
+        if count < 1:
+            print("No, you get 1")
+            count=1
         for x in range(count):
             rosettes()
     else:
@@ -124,11 +136,11 @@ def advanced():
 def rosettes():
     print("We're making rosettes")
     x=int(input("What's your starting point's x-coordinate? "))
-    if x > 400 or x < -400:
+    if x > 150 or x < -150:
         print("That value is too dumb, I set it to 0")
         x=0
     y=int(input("What's the y coordinate? "))
-    if y > 400 or y < -400:
+    if y > 150 or y < -150:
         print("That value is too dumb, I set it to 0")
         y=0
     colorslist=[]
@@ -145,10 +157,10 @@ def rosettes():
             print("You chose wrong. You're getting red")
             colorslist.append("red")
     radius=int(input("How big are your circles? "))
-    if radius>300:
-        print("That's too big, I set it to 200")
-        radius=200
-    if radius<50:
+    if radius>150:
+        print("That's too big, I set it to 100")
+        radius=100
+    if radius<0:
         print("That's too small, I set it to 100")
         radius=100
     i=0
